@@ -6,7 +6,42 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>index</title>
 	<script src="vara.min.js"></script>
+	function mintaIzinSound() {
+  if (typeof window.AudioContext !== 'undefined' || typeof window.webkitAudioContext !== 'undefined') {
+    // Buat instance AudioContext
+    var audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
+    // Buat elemen <button> untuk mengaktifkan suara
+    var button = document.createElement('button');
+    button.textContent = 'Aktifkan Suara';
+
+    // Tambahkan event listener untuk mengaktifkan suara saat tombol diklik
+    button.addEventListener('click', function() {
+      // Buat oscillator node untuk menghasilkan suara
+      var oscillator = audioContext.createOscillator();
+
+      // Sambungkan oscillator ke output AudioContext
+      oscillator.connect(audioContext.destination);
+
+      // Aktifkan suara
+      oscillator.start();
+
+      // Setelah beberapa detik, hentikan suara
+      setTimeout(function() {
+        oscillator.stop();
+      }, 1000);
+    });
+
+    // Tambahkan tombol ke elemen body
+    document.body.appendChild(button);
+  } else {
+    console.error('AudioContext tidak didukung di browser ini');
+  }
+}
+
+// Panggil fungsi untuk meminta izin
+mintaIzinSound();
+	    
 	<style>
 		* {
 			padding: 0;
