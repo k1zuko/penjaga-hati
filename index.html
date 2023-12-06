@@ -15,7 +15,7 @@
 		}
 
 		body {
-			background: linear-gradient(0.25turn, rgb(6, 104, 104), rgb(6, 104, 104));
+			background: linear-gradient(0.25turn, rgb(51, 177, 89), rgb(0, 105, 105));
 			background-size: cover;
 			background-position: center;
 			height: 100vh;
@@ -27,7 +27,7 @@
 
 		#container {
 			position: absolute;
-			top: 40%;
+			top: 28%;
 			left: 50%;
 			transform: translate(-50%, -40%);
 			width: 80%;
@@ -37,15 +37,15 @@
 			color: black;
 		}
 
-		@media screen and (max-width: 500px) {
+		@media screen and (min-width: 390px) {
 			#container {
 				position: absolute;
 				top: 30%;		
 				left: 50%;
-				transform: translate(-50%, -30%);
+				transform: translate(-50%, -50%);
 				width: 100%;
 				margin: 50% auto;
-				min-height: 500px;
+				height: 720px;
 			}
 		}
 
@@ -155,8 +155,8 @@
 		</div>
 	</div>
 	<script>
-		var fontSize = 40;
-		if (window.screen.width > 700)
+		var fontSize = 30;
+		if (window.screen.width > 900)
 			fontSize = 55;
 		else if (window.screen.width > 1200)
 			fontSize = 80;
