@@ -37,7 +37,17 @@
 			color: black;
 		}
 
-		
+		@media screen and (max-width: 410px) {
+			#container {
+				position: absolute;
+				top: 30%;		
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 100%;
+				margin: 50% auto;
+				height: 720px;
+			}
+		}
 
 		.wrapper {
 			position: fixed;
@@ -147,9 +157,9 @@
 	<script>
 		var fontSize = 30;
 		if (window.screen.width > 850)
-			fontSize = 50;
+			fontSize = 55;
 		else if (window.screen.width > 1200)
-			fontSize = 65;
+			fontSize = 80;
 		var vara = new Vara(
 			"#container",
 			"https://raw.githubusercontent.com/akzhy/Vara/master/fonts/Satisfy/SatisfySL.json",
