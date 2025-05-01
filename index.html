@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +9,6 @@
 		* {
 			padding: 0;
 			margin: 0;
-
 		}
 
 		body {
@@ -20,8 +18,6 @@
 			height: 100vh;
 			overflow: hidden;
 			color: black;
-
-
 		}
 
 		#container {
@@ -35,7 +31,6 @@
 			margin-top: 150px;
 			color: black;
 		}
-
 		
 		@media screen and (max-width: 410px) {
 			#container {
@@ -132,43 +127,27 @@
 				opacity: 0;
 			}
 		}
+		
+		#playPrompt {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			background: rgba(0,0,0,0.8);
+			color: white;
+			padding: 20px;
+			text-align: center;
+			z-index: 1000;
+			font-family: Arial;
+		}
 	</style>
 </head>
 
 <body>
-
-	<div id="soundNotification" style="position:fixed; top:0; left:0; right:0; background:rgba(0,0,0,0.8); color:white; padding:10px; text-align:center; display:none;">
-  For the best experience, please enable sound. Click anywhere to continue.
-	</div>
+	<div id="playPrompt">Klik dimana saja untuk memulai musik dan lirik</div>
 	
 	<audio id="bgMusic" src="penjaga_hati.mp3" loop></audio>
-	
-	<script>
-	  document.addEventListener('DOMContentLoaded', function() {
-	    const audio = document.getElementById('bgMusic');
-	    const notification = document.getElementById('soundNotification');
-	    
-	    // Try to play automatically
-	    const playPromise = audio.play();
-	    
-	    if (playPromise !== undefined) {
-	      playPromise.catch(() => {
-	        // Show notification if autoplay was blocked
-	        notification.style.display = 'block';
-	        
-	        // Play on any click
-	        document.body.addEventListener('click', function() {
-	          audio.play();
-	          notification.style.display = 'none';
-	        }, { once: true });
-	      });
-	    }
-	  });
-	</script>
-	
-	<audio autoplay src="penjaga_hati.mp3"></audio>
 	<div id="container"></div>
-	<a href="" class="hidden"></a>
 	<div class="wrapper">
 		<div class="box">
 			<div></div>
@@ -183,85 +162,101 @@
 			<div></div>
 		</div>
 	</div>
+	
 	<script>
-		var fontSize = 30;
-		if (window.screen.width > 850)
-			fontSize = 50;
-		else if (window.screen.width > 1200)
-			fontSize = 65;
-		var vara = new Vara(
-			"#container",
-			"https://raw.githubusercontent.com/akzhy/Vara/master/fonts/Satisfy/SatisfySL.json",
-			[
+		document.addEventListener('click', initExperience, { once: true });
+		
+		function initExperience() {
+			// 1. Sembunyikan prompt
+			document.getElementById('playPrompt').style.display = 'none';
+			
+			// 2. Mulai memutar musik
+			document.getElementById('bgMusic').play();
+			
+			// 3. Jalankan animasi teks
+			startLyricsAnimation();
+		}
+		
+		function startLyricsAnimation() {
+			var fontSize = 30;
+			if (window.screen.width > 850)
+				fontSize = 50;
+			else if (window.screen.width > 1200)
+				fontSize = 65;
+				
+			var vara = new Vara(
+				"#container",
+				"https://raw.githubusercontent.com/akzhy/Vara/master/fonts/Satisfy/SatisfySL.json",
+				[
+					{
+						text: "Kar'na bersamamu semua terasa indah",
+						y: 250,
+						delay: 3400,
+						fromCurrentPosition: { y: false },
+						duration: 4000
+					},
+					{
+						text: "Gundah gulana hatiku t'lah hancur sirna",
+						y: 250,
+						fromCurrentPosition: { y: false },
+						delay: 2000,
+						duration: 4000
+					},
+					{
+						text: "Janjiku takkan kulepas",
+						y: 250,
+						fromCurrentPosition: { y: false },
+						delay: 2000,
+						duration: 1350
+					},
+					{
+						text: "Wahai kau bidadariku dari surga",
+						y: 250,
+						fromCurrentPosition: { y: false },
+						delay: 1000,
+						duration: 3500
+					},
+					{
+						text: "'Tuk s'lamanya",
+						y: 250,
+						fromCurrentPosition: { y: false },
+						delay: 2000,
+						duration: 3000
+					},
+					{
+						text: "'Tuk s'lamanya",
+						y: 250,
+						fromCurrentPosition: { y: false },
+						delay: 3500,
+						duration: 3000
+					},
+					{
+						text: "'Tuk s'lamanya",
+						y: 250,
+						fromCurrentPosition: { y: false },
+						delay: 2500,
+						duration: 3000
+					},
+				],
 				{
-					text: "Kar'na bersamamu semua terasa indah",
-					y: 250,
-					delay: 3400,
-					fromCurrentPosition: { y: false },
-					duration: 4000
-				},
-				{
-					text: "Gundah gulana hatiku t'lah hancur sirna",
-					y: 250,
-					fromCurrentPosition: { y: false },
-					delay: 2000,
-					duration: 4000
-				},
-				{
-					text: "Janjiku takkan kulepas",
-					y: 250,
-					fromCurrentPosition: { y: false },
-					delay: 2000,
-					duration: 1350
-				},
-				{
-					text: "Wahai kau bidadariku dari surga",
-					y: 250,
-					fromCurrentPosition: { y: false },
-					delay: 1000,
-					duration: 3500
-				},
-				{
-					text: "'Tuk s'lamanya",
-					y: 250,
-					fromCurrentPosition: { y: false },
-					delay: 2000,
-					duration: 3000
-				},
-				{
-					text: "'Tuk s'lamanya",
-					y: 250,
-					fromCurrentPosition: { y: false },
-					delay: 3500,
-					duration: 3000
-				},
-				{
-					text: "'Tuk s'lamanya",
-					y: 250,
-					fromCurrentPosition: { y: false },
-					delay: 2500,
-					duration: 3000
-				},
-			],
-			{
-				strokeWidth: 2,
-				color: "#fff",
-				fontSize: fontSize,
-				textAlign: "center"
-			}
-		);
-		vara.ready(function () {
-			var erase = true;
-			vara.animationEnd(function (i, o) {
-				if (i == "no_erase") erase = false;
-				if (erase) {
-					o.container.style.transition =
-						"opacity 1s 1s";
-					o.container.style.opacity = 0;
+					strokeWidth: 2,
+					color: "#fff",
+					fontSize: fontSize,
+					textAlign: "center"
 				}
+			);
+			
+			vara.ready(function () {
+				var erase = true;
+				vara.animationEnd(function (i, o) {
+					if (i == "no_erase") erase = false;
+					if (erase) {
+						o.container.style.transition = "opacity 1s 1s";
+						o.container.style.opacity = 0;
+					}
+				});
 			});
-		});
+		}
 	</script>
 </body>
-
 </html>
