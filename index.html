@@ -137,6 +137,35 @@
 
 <body>
 
+	<div id="soundNotification" style="position:fixed; top:0; left:0; right:0; background:rgba(0,0,0,0.8); color:white; padding:10px; text-align:center; display:none;">
+  For the best experience, please enable sound. Click anywhere to continue.
+	</div>
+	
+	<audio id="bgMusic" src="penjaga_hati.mp3" loop></audio>
+	
+	<script>
+	  document.addEventListener('DOMContentLoaded', function() {
+	    const audio = document.getElementById('bgMusic');
+	    const notification = document.getElementById('soundNotification');
+	    
+	    // Try to play automatically
+	    const playPromise = audio.play();
+	    
+	    if (playPromise !== undefined) {
+	      playPromise.catch(() => {
+	        // Show notification if autoplay was blocked
+	        notification.style.display = 'block';
+	        
+	        // Play on any click
+	        document.body.addEventListener('click', function() {
+	          audio.play();
+	          notification.style.display = 'none';
+	        }, { once: true });
+	      });
+	    }
+	  });
+	</script>
+	
 	<audio autoplay src="penjaga_hati.mp3"></audio>
 	<div id="container"></div>
 	<a href="" class="hidden"></a>
